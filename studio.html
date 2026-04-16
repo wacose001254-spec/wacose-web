@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WACOSE | Studio Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        panel: '#0a0f1a', 
+                        surface: '#020617', 
+                        accent: '#3b82f6', 
+                        'visual-glow': '#818cf8',
+                        'brand-glow': '#10b981',
+                        'tech-glow': '#f59e0b',
+                        'border-ghost': 'rgba(255,255,255,0.06)' 
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), #020617), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; background-attachment: fixed; background-position: center; color: #94a3b8; 
+            font-family: 'Inter', sans-serif; 
+        }
+        .glass-panel { background: rgba(10, 15, 26, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .gallery-item { cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gallery-item:hover { transform: translateY(-8px); }
+        #lightbox { background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(25px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-border-ghost sticky top-0 bg-surface/80 backdrop-blur-md z-50">
+        <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-accent flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2.5"/></svg> Back
+        </a>
+        <div class="flex gap-6 text-[10px] font-mono text-slate-500 uppercase tracking-widest font-bold items-center">
+            <a href="about.html" class="hover:text-white transition-colors">About</a>
+            <button onclick="filterGallery('visual', this)" class="hover:text-visual-glow transition-colors">Visuals</button>
+            <button onclick="filterGallery('brand', this)" class="hover:text-brand-glow transition-colors">Brand</button>
+            <button onclick="filterGallery('tech', this)" class="hover:text-tech-glow transition-colors">Tech</button>
+            <a href="contact.html" class="text-accent hover:brightness-125 transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-6 py-20">
+        <h1 class="text-6xl font-extrabold text-white tracking-tighter mb-4 italic">Studio Archive<span class="text-accent">.</span></h1>
+        <p class="text-xl text-slate-300 max-w-2xl font-light">Precision-driven visuals and technical infrastructure.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div onclick="zoomImage(this)" class="gallery-item visual bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-visual-glow uppercase tracking-[0.3em] mb-3 block font-bold">Photography</span><h3 class="text-white font-bold text-xl italic mb-2">Urban Nightfall</h3><p class="text-xs opacity-50">Cinematic Nairobi nightscapes.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item brand bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group">
+                <div class="h-72 bg-surface overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1635241161466-541f065683ba?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-brand-glow uppercase tracking-[0.3em] mb-3 block font-bold">Identity</span><h3 class="text-white font-bold text-xl italic mb-2">Fintech Systems</h3><p class="text-xs opacity-50">Minimalist brand architectures.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item tech bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 bg-[#050810] flex flex-col items-center justify-center p-8 font-mono overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity">
+                    <div class="relative z-10 text-tech-glow text-[10px] mb-2 font-bold tracking-tighter">> NODE_DEPLOYMENT_ACTIVE</div>
+                    <div class="relative z-10 text-white font-bold text-lg italic uppercase tracking-tighter">Enterprise Terminal</div>
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-tech-glow uppercase tracking-[0.3em] mb-3 block font-bold">Development</span><h3 class="text-white font-bold text-xl italic mb-2">Logistics Control</h3><p class="text-xs opacity-50">Full-stack React dashboards.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item visual bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-visual-glow uppercase tracking-[0.3em] mb-3 block font-bold">Photography</span><h3 class="text-white font-bold text-xl italic mb-2">Architectural Nodes</h3><p class="text-xs opacity-50">Industrial geometry and urban direction.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item brand bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group">
+                <div class="h-72 bg-surface overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-brand-glow uppercase tracking-[0.3em] mb-3 block font-bold">Brand Design</span><h3 class="text-white font-bold text-xl italic mb-2">Visual Language</h3><p class="text-xs opacity-50">Typography and color guidelines.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item tech bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 bg-surface flex items-center justify-center p-0 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-30 group-hover:opacity-60 transition-all">
+                    <div class="absolute inset-0 flex items-center justify-center"><span class="text-white font-mono text-[10px] bg-black/50 px-3 py-1 rounded-full border border-white/10 font-bold uppercase tracking-tighter">Analyzing_Flux...</span></div>
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-tech-glow uppercase tracking-[0.3em] mb-3 block font-bold">Development</span><h3 class="text-white font-bold text-xl italic mb-2">Data Dashboards</h3><p class="text-xs opacity-50">Interfaces for high-velocity decision making.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item visual bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-visual-glow uppercase tracking-[0.3em] mb-3 block font-bold">Portraiture</span><h3 class="text-white font-bold text-xl italic mb-2">Human Essence</h3><p class="text-xs opacity-50">High-contrast corporate profiles.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item brand bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group">
+                <div class="h-72 bg-surface overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-brand-glow uppercase tracking-[0.3em] mb-3 block font-bold">Identity</span><h3 class="text-white font-bold text-xl italic mb-2">Grid Logics</h3><p class="text-xs opacity-50">Geometric minimalist perfection.</p></div>
+            </div>
+
+            <div onclick="zoomImage(this)" class="gallery-item tech bg-panel rounded-[2rem] overflow-hidden border border-border-ghost group relative">
+                <div class="h-72 bg-[#050810] flex flex-col items-center justify-center p-8 font-mono overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity">
+                    <div class="relative z-10 text-tech-glow text-[10px] mb-2 font-bold tracking-tighter">> SYNCING_LEDGER...</div>
+                    <div class="relative z-10 text-white font-bold text-lg italic uppercase tracking-tighter">System Core</div>
+                </div>
+                <div class="p-8"><span class="text-[9px] font-mono text-tech-glow uppercase tracking-[0.3em] mb-3 block font-bold">Infrastructure</span><h3 class="text-white font-bold text-xl italic mb-2">Backend Nodes</h3><p class="text-xs opacity-50">Secure, high-uptime architectures.</p></div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="lightbox" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-8 right-8 text-white/50 hover:text-white"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2"/></svg></button>
+        <div class="relative max-w-5xl max-h-[85vh] w-full flex items-center justify-center pointer-events-none">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-3xl shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-white/5 transform scale-95 transition-transform duration-300 object-contain pointer-events-auto">
+        </div>
+    </div>
+
+    <script>
+        function filterGallery(category, btn) {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 10);
+                } else {
+                    item.style.opacity = '0'; item.style.transform = 'translateY(20px)';
+                    setTimeout(() => item.style.display = 'none', 400);
+                }
+            });
+        }
+        function zoomImage(element) {
+            const img = element.querySelector('img');
+            if (!img) return;
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = img.src; lb.classList.remove('hidden'); document.body.style.overflow = 'hidden';
+            setTimeout(() => { lbImg.classList.remove('scale-95'); lbImg.classList.add('scale-100'); }, 10);
+        }
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.classList.remove('scale-100'); lbImg.classList.add('scale-95'); document.body.style.overflow = 'auto';
+            setTimeout(() => { lb.classList.add('hidden'); }, 300);
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeLightbox(); });
+    </script>
+</body>
+</html>

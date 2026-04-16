@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WACOSE | Enterprise Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { panel: '#0a0f1a', surface: '#020617', accent: '#3b82f6', 'visual-glow': '#818cf8', 'border-ghost': 'rgba(255,255,255,0.06)' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), #020617), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-attachment: fixed; color: #94a3b8; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(10, 15, 26, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.06); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .logistics-card:hover { border-color: #3b82f6; box-shadow: 0 0 50px rgba(59, 130, 246, 0.2); }
+        .studio-card:hover { border-color: #818cf8; box-shadow: 0 0 50px rgba(129, 140, 248, 0.2); }
+
+        .content-reveal { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .expanded .content-reveal { max-height: 1200px; opacity: 1; margin-top: 2.5rem; }
+        
+        .rotate-icon { transition: transform 0.6s ease; }
+        .expanded .rotate-icon { transform: rotate(180deg); }
+
+        /* Interactive Nodes */
+        .info-node { cursor: pointer; transition: all 0.3s ease; }
+        .info-node:hover { background: rgba(59, 130, 246, 0.05); transform: translateX(12px); border-left-color: #3b82f6; }
+        .studio-node:hover { background: rgba(129, 140, 248, 0.05); border-left-color: #818cf8; }
+        
+        #info-overlay { background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(20px); transition: all 0.4s ease; }
+        .terminal-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <a href="index.html" class="text-white font-extrabold text-2xl tracking-tighter italic">WACOSE<span class="text-accent">.</span></a>
+        <div class="flex gap-8 text-[11px] font-bold uppercase tracking-widest items-center">
+            <a href="logistics.html" class="hover:text-white transition-colors">Logistics</a>
+            <a href="studio.html" class="hover:text-white transition-colors">Studio</a>
+            <a href="contact.html" class="text-accent hover:brightness-125 transition-all">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-20 relative z-10">
+        <header class="mb-20">
+            <h1 class="text-7xl font-extrabold text-white tracking-tighter italic mb-8">System Architecture<span class="text-accent">.</span></h1>
+            <p class="text-xl text-slate-300 font-light leading-relaxed">Expand a core protocol to view the operational pillars. Click any pillar for technical deep-dives.</p>
+        </header>
+
+        <section class="space-y-10">
+            
+            <div class="glass-panel logistics-card p-12 rounded-[3.5rem]" id="logistics-root">
+                <div class="flex justify-between items-center cursor-pointer" onclick="toggleCard('logistics-root')">
+                    <div>
+                        <h2 class="text-white font-bold text-4xl mb-1 italic uppercase tracking-tighter">01. Logistics Core</h2>
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                            <span class="text-[9px] font-mono text-accent uppercase tracking-[0.4em]">Protocol: Nairobi_Grid_v4.0</span>
+                        </div>
+                    </div>
+                    <svg class="w-8 h-8 text-slate-600 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                
+                <div class="content-reveal">
+                    <div class="grid md:grid-cols-2 gap-14">
+                        <div class="space-y-8">
+                            <p class="text-base leading-relaxed text-slate-400">Our logistics arm is ground-truth engineered. We solve the friction of movement within East Africa's busiest economic hub.</p>
+                            <div class="p-6 bg-surface/40 rounded-3xl border border-white/5 info-node group" onclick="openTerminal('uar')">
+                                <h4 class="text-[10px] font-bold text-white mb-2 uppercase tracking-widest group-hover:text-accent transition-colors">UAR Protocol Detail ↗</h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed italic">Synchronized navigation through Nairobi's transit choke points.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <h4 class="text-[10px] font-mono text-accent uppercase tracking-widest opacity-60">Technical Pillars</h4>
+                            <div class="space-y-6">
+                                <div class="info-node border-l-2 border-accent/20 pl-6 py-2" onclick="openTerminal('biometric')">
+                                    <span class="text-white font-bold uppercase block italic text-sm">Biometric Handshake ↗</span>
+                                    <span class="text-xs text-slate-500">Securing the chain of custody via encrypted fingerprinting.</span>
+                                </div>
+                                <div class="info-node border-l-2 border-accent/20 pl-6 py-2" onclick="openTerminal('green')">
+                                    <span class="text-white font-bold uppercase block italic text-sm">Green Node Transit ↗</span>
+                                    <span class="text-xs text-slate-500">Transitioning to zero-emission EV node deployment.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel studio-card p-12 rounded-[3.5rem]" id="studio-root">
+                <div class="flex justify-between items-center cursor-pointer" onclick="toggleCard('studio-root')">
+                    <div>
+                        <h2 class="text-white font-bold text-4xl mb-1 italic uppercase tracking-tighter">02. Creative Studio</h2>
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-visual-glow rounded-full animate-pulse"></span>
+                            <span class="text-[9px] font-mono text-visual-glow uppercase tracking-[0.4em]">Visual: High_Fidelity_Diffusion</span>
+                        </div>
+                    </div>
+                    <svg class="w-8 h-8 text-slate-600 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <div class="content-reveal">
+                    <div class="grid md:grid-cols-2 gap-14">
+                        <div class="space-y-8">
+                            <p class="text-base leading-relaxed text-slate-400">The WACOSE Studio is where we apply the 2026 'Vibe Coding' aesthetic to the enterprise sector.</p>
+                            <div class="p-6 bg-surface/40 rounded-3xl border border-white/5 info-node studio-node group" onclick="openTerminal('tactile')">
+                                <h4 class="text-[10px] font-bold text-white mb-2 uppercase tracking-widest group-hover:text-visual-glow transition-colors">Tactile UI Framework ↗</h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed italic">Developing 'Liquid Glass' and sensory digital textures.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <h4 class="text-[10px] font-mono text-visual-glow uppercase tracking-widest opacity-60">Creative Pillars</h4>
+                            <div class="space-y-6">
+                                <div class="info-node studio-node border-l-2 border-visual-glow/20 pl-6 py-2" onclick="openTerminal('diffusion')">
+                                    <span class="text-white font-bold uppercase block italic text-sm">Diffusion Visuals ↗</span>
+                                    <span class="text-xs text-slate-500">AI-assisted CGI-level brand photography nodes.</span>
+                                </div>
+                                <div class="info-node studio-node border-l-2 border-visual-glow/20 pl-6 py-2" onclick="openTerminal('bento')">
+                                    <span class="text-white font-bold uppercase block italic text-sm">Bento Grid UX ↗</span>
+                                    <span class="text-xs text-slate-500">Modular, intuitive dashboard organization.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="info-overlay" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6" onclick="closeTerminal()">
+        <div class="glass-panel max-w-xl w-full p-12 rounded-[3rem] relative shadow-2xl border-white/10" onclick="event.stopPropagation()">
+            <button onclick="closeTerminal()" class="absolute top-10 right-10 text-slate-500 hover:text-white transition-colors">✕</button>
+            <div id="terminal-content">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const terminalData = {
+            uar: { title: "UAR Protocol", body: "Urban-Adaptive Routing is ground-truth data applied to logistics. We specifically map Nairobi's transit 'choke points'—Westlands, the CBD core, and industrial artery links. Our nodes navigate these zones in real-time by bypassing density clusters that traditional maps ignore, ensuring enterprise assets move while others sit in traffic." },
+            biometric: { title: "Biometric Handshake", body: "Our 2026 security layer. Every high-value delivery requires a verified biometric handshake. This timestamped, geo-locked proof of condition is uploaded instantly to your Client Terminal, creating an unbreakable chain of custody for critical enterprise assets." },
+            green: { title: "Green Node Transit", body: "Sustainability at high velocity. We are deploying EV nodes for our CBD routes to align with the 2026 green initiative. These silent, zero-emission units allow for unrestricted movement in enterprise corridors and noise-sensitive tech zones." },
+            tactile: { title: "Vibe Coding & Tactile UI", body: "This is the 2026 design standard. We move away from the flat, boring layouts of 2024. Tactile UI uses shadow-depth and 'Liquid Glass' blurs to make websites look tangible and premium. It’s high-end, sensory, and designed to make your digital presence feel as solid as your physical one." },
+            diffusion: { title: "Diffusion Visuals", body: "AI-infrastructure for the modern brand. We use custom diffusion models to create CGI-level photography instantly. This allows your studio to deploy world-class product shots and urban visuals in Nairobi settings without the overhead of massive production teams." },
+            bento: { title: "Bento Grid UX", body: "Inspired by organizational logic. Bento Grid layouts modularize information, making data-heavy logistics hubs and studio portfolios easy to digest at a glance. It's the gold standard for reducing user friction in high-information environments." }
+        };
+
+        function toggleCard(id) {
+            const card = document.getElementById(id);
+            const wasExpanded = card.classList.contains('expanded');
+            document.querySelectorAll('.glass-panel').forEach(c => c.classList.remove('expanded'));
+            if (!wasExpanded) card.classList.add('expanded');
+        }
+
+        function openTerminal(key) {
+            const data = terminalData[key];
+            const content = document.getElementById('terminal-content');
+            content.innerHTML = `
+                <h3 class="text-white font-black text-3xl uppercase italic mb-6 terminal-text font-sans">${data.title}</h3>
+                <p class="text-sm leading-relaxed text-slate-400 font-light font-sans">${data.body}</p>
+                <div class="mt-10 pt-6 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-[9px] font-mono text-accent uppercase tracking-widest">Protocol_Active // 2026_Build</span>
+                    <button onclick="closeTerminal()" class="text-[9px] font-mono text-white/40 hover:text-white uppercase tracking-widest bg-white/5 px-4 py-2 rounded-full transition-all">Close_Terminal</button>
+                </div>
+            `;
+            document.getElementById('info-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTerminal() {
+            document.getElementById('info-overlay').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Escape Key
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeTerminal(); });
+    </script>
+</body>
+</html>

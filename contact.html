@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WACOSE | Initialize Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { panel: '#0a0f1a', surface: '#020617', accent: '#3b82f6', 'border-ghost': 'rgba(255,255,255,0.06)' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #020617; color: #94a3b8; font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(10, 15, 26, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        input, textarea { background: #020617 !important; border: 1px solid rgba(255,255,255,0.06) !important; color: white !important; }
+        input:focus, textarea:focus { border-color: #3b82f6 !important; outline: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
+        <a href="index.html" class="text-white font-extrabold text-2xl tracking-tighter italic">WACOSE<span class="text-accent">.</span></a>
+        <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity">Exit Terminal</a>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-20">
+        <div>
+            <h1 class="text-6xl font-extrabold text-white tracking-tighter italic mb-8">Let's Connect<span class="text-accent">.</span></h1>
+            <p class="text-lg mb-12 font-light">Whether it's a critical dispatch or a high-end design project, our nodes are ready to deploy.</p>
+            
+            <div class="space-y-8">
+                <div>
+                    <span class="text-[10px] font-mono text-accent uppercase tracking-widest block mb-2">Location</span>
+                    <p class="text-white font-bold italic text-xl uppercase">Nairobi, Kenya</p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-mono text-accent uppercase tracking-widest block mb-2">Digital Relay</span>
+                    <p class="text-white font-bold italic text-xl uppercase underline">hello@wacose.com</p>
+                </div>
+                <div class="pt-8">
+                    <a href="https://wa.me/254759162363" class="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:brightness-110 transition-all">Instant WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel p-10 rounded-[2.5rem]">
+            <form action="#" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-500 block mb-2">Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full p-4 rounded-xl text-sm font-mono">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-500 block mb-2">Service</label>
+                        <input type="text" placeholder="Logistics / Studio" class="w-full p-4 rounded-xl text-sm font-mono">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-slate-500 block mb-2">Message</label>
+                    <textarea rows="5" placeholder="Describe your project node..." class="w-full p-4 rounded-xl text-sm font-mono"></textarea>
+                </div>
+                <button class="w-full bg-white text-black font-black py-4 rounded-xl uppercase text-xs tracking-widest hover:bg-accent hover:text-white transition-all">Send Transmission</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-20 text-center opacity-20">
+        <p class="text-[9px] font-mono tracking-[0.5em] uppercase italic">WACOSE_SYSTEMS_v3.2_COMM_MODULE</p>
+    </footer>
+
+</body>
+</html>

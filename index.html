@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WACOSE | Enterprise Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { panel: '#0a0f1a', surface: '#020617', accent: '#3b82f6', 'border-ghost': 'rgba(255,255,255,0.06)' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.8), #020617), 
+                        url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-card { backdrop-filter: blur(12px); background: rgba(10, 15, 26, 0.8); border: 1px solid rgba(255,255,255,0.06); transition: all 0.4s ease; }
+        .bento-card:hover { border-color: #3b82f6; transform: translateY(-4px); }
+    </style>
+</head>
+<body class="antialiased" onload="updateHomeTerminal()">
+
+    <nav class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div class="flex flex-col">
+            <h1 class="text-white font-extrabold text-2xl tracking-tighter italic">WACOSE<span class="text-accent">.</span></h1>
+            <p class="text-[10px] font-mono tracking-[0.3em] uppercase opacity-50">Nairobi // Enterprise Node</p>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest items-center">
+            <a href="about.html" class="hover:text-accent transition-colors">About</a>
+            <a href="logistics.html" class="hover:text-accent transition-colors">Logistics</a>
+            <a href="studio.html" class="hover:text-accent transition-colors">Studio</a>
+            <a href="contact.html" class="hover:text-accent transition-colors">Contact</a>
+            <a href="logistics.html" class="bg-accent text-white px-4 py-1.5 rounded-full border border-accent/20 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span> Terminal
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20 relative z-10">
+        <div class="grid grid-cols-12 auto-rows-[160px] gap-4">
+            <section class="col-span-12 lg:col-span-8 row-span-3 bento-card rounded-[2rem] p-10 flex flex-col justify-between relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                        <span class="font-mono text-[10px] tracking-widest text-accent uppercase">Node Status: Online</span>
+                    </div>
+                    <h2 class="text-5xl font-extrabold text-white leading-[1.1] tracking-tight max-w-xl italic">Infrastructure for <br/> Urban Movement.</h2>
+                </div>
+                <div class="relative z-10 w-full max-w-md">
+                    <p class="mb-6 text-slate-300 text-sm font-light">Global standard logistics synchronized with creative execution.</p>
+                    <form action="logistics.html" method="GET" class="flex gap-2 p-1.5 bg-surface/60 rounded-2xl border border-border-ghost focus-within:border-accent/50 transition-all backdrop-blur-md">
+                        <input type="text" name="id" placeholder="Tracking ID..." required class="bg-transparent border-none w-full px-4 text-sm font-mono focus:outline-none text-white uppercase tracking-widest">
+                        <button type="submit" class="bg-accent text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:brightness-110 transition-all">Track</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="col-span-12 md:col-span-4 row-span-2 bento-card rounded-[2rem] p-8 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-white font-bold text-lg italic">Operations Log</h3>
+                    <span class="text-[9px] font-mono opacity-40 uppercase">Live_Feed</span>
+                </div>
+                <div id="home-log-container" class="space-y-4 overflow-y-auto pr-2 flex-grow"></div>
+                <a href="logistics.html" class="mt-4 text-[10px] font-bold text-accent uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all">Full Terminal</a>
+            </section>
+
+            <section onclick="location.href='studio.html'" class="col-span-6 md:col-span-2 row-span-1 bento-card rounded-[2.5rem] p-6 flex items-center justify-center group cursor-pointer hover:bg-emerald-500/10">
+                <div class="text-center"><div class="text-white font-black text-xl italic uppercase">Design</div></div>
+            </section>
+
+            <section onclick="location.href='studio.html'" class="col-span-6 md:col-span-2 row-span-1 bg-accent rounded-[2.5rem] p-6 flex flex-col justify-between group cursor-pointer">
+                <div class="text-white font-bold text-lg italic">Full-Stack<br/>Engineering</div>
+                <svg class="w-5 h-5 text-white self-end transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m4-4H3" stroke-width="2.5"/></svg>
+            </section>
+
+            <section class="col-span-12 md:col-span-4 row-span-1 bento-card rounded-[2rem] p-8 flex items-center justify-between">
+                <div><div class="text-white font-bold text-2xl" id="total-dispatches">0</div><div class="text-[10px] uppercase font-mono tracking-widest mt-1 opacity-50">Local Sessions</div></div>
+                <div class="h-8 w-[1px] bg-border-ghost"></div>
+                <div><div class="text-white font-bold text-2xl">99.8%</div><div class="text-[10px] uppercase font-mono tracking-widest mt-1 opacity-50">Relay Success</div></div>
+            </section>
+        </div>
+    </main>
+    <script>
+        function updateHomeTerminal() {
+            const logs = JSON.parse(localStorage.getItem('wacose_logs') || '[]');
+            const container = document.getElementById('home-log-container');
+            const totalDisplay = document.getElementById('total-dispatches');
+            if (logs.length > 0) {
+                totalDisplay.innerText = logs.length;
+                container.innerHTML = '';
+                logs.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "p-3 bg-white/5 border-l-2 border-accent/40 rounded-r-lg mb-3";
+                    div.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="text-white font-bold text-[10px] uppercase font-sans">${item.client}</span><span class="text-[8px] font-mono opacity-30">${item.time}</span></div><p class="text-[9px] text-slate-500 uppercase font-mono">${item.id} // ${item.route.split('>')[1] || 'Transit'}</p>`;
+                    container.appendChild(div);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
